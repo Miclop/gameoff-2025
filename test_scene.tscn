@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://8lxfco6p5vpl"]
+
+[ext_resource type="PackedScene" uid="uid://b7nxdmy3oajh6" path="res://monster.tscn" id="1_ia1lp"]
+
+[sub_resource type="GDScript" id="GDScript_uhqqe"]
+script/source = "extends Node2D
+
+@onready var monster: EvolvingMonster = $EvolvingMonster
+@onready var info_label: Label = $UI/InfoLabel
+@onready var time_label: Label = $UI/TimeLabel
+@onready var stage_label: Label = $UI/StageLabel
+
+func _ready():
+	# Set up the monster textures
+	monster.stage1_texture = preload(\"res://images/monsters/monster1.png\")
+	monster.stage2_texture = preload(\"res://images/monsters/monster2.png\")
+	monster.stage3_texture = preload(\"res://images/monsters/monster3.png\")
+	
+	# Set evolution times (in seconds)
+	monster.evolution_time_thresholds = [5.0, 10.0, 0.0]  # Quick evolution for testing
+	
+	update_display()
+
+func _process(delta):
+	update_display()
+	
+func update_display():
+	var stats = monster.get_stats()
+	
+	time_label.text = \"Time Alive: %.1fs\" % stats.total_time_alive
+	stage_label.text = \"Stage: %s (%s)\" % [stats.stage, monster.get_stage_name()]
+	
+	info_label.text = \"\"\"
+	Health: %.1f
+	Attack: %.1f
+	Speed: %.1f
+	Next Evolution In: %.1fs
+	\"\"\" % [stats.health, stats.attack, stats.speed, stats.time_until_next_evolution]
+"
+
+[node name="TestScene" type="Node2D"]
+script = SubResource("GDScript_uhqqe")
+
+[node name="EvolvingMonster" parent="." instance=ExtResource("1_ia1lp")]
+position = Vector2(556, 355)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InfoLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 140.0
+
+[node name="TimeLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 150.0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="StageLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 180.0
+offset_right = 320.0
+offset_bottom = 210.0
