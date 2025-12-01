@@ -8,6 +8,7 @@ var is_dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 var original_position: Vector2 = Vector2.ZERO
 var card_index: int = 0
+var card_pindex: int = 0
 
 var card_container: Control = null
 @onready var texture_rect = $TextureRect

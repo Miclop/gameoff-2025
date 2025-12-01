@@ -9,6 +9,7 @@ load_path = "res://.godot/imported/Eyebeam_card.png-df7c063a143af764456e5b2c9c73
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_r8bnh")
+card_text = null
 card_texture = SubResource("CompressedTexture2D_r8bnh")
 
 [node name="Label" type="Label" parent="."]

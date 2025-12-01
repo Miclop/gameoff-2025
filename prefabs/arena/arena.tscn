@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkek0thjjo2y8"]
+
+[ext_resource type="Script" uid="uid://brwvlrbfh0cor" path="res://prefabs/arena/arena.gd" id="1_1smd2"]
+[ext_resource type="Texture2D" uid="uid://h38hvpxqghm3" path="res://images/backgrounds/arena.png" id="2_m3tuq"]
+[ext_resource type="FontFile" uid="uid://bf32d683lm2ol" path="res://font/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="3_8lhiw"]
+[ext_resource type="Script" uid="uid://dv1laq1r3te8t" path="res://prefabs/ui/next_wave_button.gd" id="4_ba5w2"]
+
+[node name="Arena" type="Node2D"]
+script = ExtResource("1_1smd2")
+
+[node name="Arena" type="Sprite2D" parent="."]
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("2_m3tuq")
+
+[node name="Next wave button" type="Button" parent="."]
+offset_left = 300.0
+offset_top = 50.0
+offset_right = 403.0
+offset_bottom = 83.0
+theme_override_fonts/font = ExtResource("3_8lhiw")
+text = "Next Wave
+"
+script = ExtResource("4_ba5w2")

@@ -7,6 +7,8 @@
 script = ExtResource("1_jwfy8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+scale = Vector2(0.09, 0.09)
 texture = ExtResource("2_8ryta")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

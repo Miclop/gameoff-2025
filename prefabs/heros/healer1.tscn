@@ -1,9 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bljryxp63cio6"]
 
 [ext_resource type="Script" uid="uid://ct8lqahtaf0nn" path="res://prefabs/heros/healer1.gd" id="1_fpyt6"]
-[ext_resource type="Texture2D" uid="uid://cq0nm8s6yhbqf" path="res://images/heros/meele1.png" id="2_rx5fo"]
+[ext_resource type="Texture2D" uid="uid://0flp3i8onvq1" path="res://images/heros/healer1.png" id="2_c4hx5"]
 
 [node name="Healer1" type="Node2D"]
+z_index = 5
+scale = Vector2(0.09, 0.09)
 script = ExtResource("1_fpyt6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -22,4 +24,5 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_rx5fo")
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("2_c4hx5")

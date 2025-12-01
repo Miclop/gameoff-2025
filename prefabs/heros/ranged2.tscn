@@ -20,4 +20,6 @@ layout_mode = 0
 show_percentage = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+scale = Vector2(0.09, 0.09)
 texture = ExtResource("2_v7ldb")

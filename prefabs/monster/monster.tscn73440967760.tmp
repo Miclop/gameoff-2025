@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7nxdmy3oajh6"]
+
+[ext_resource type="Script" uid="uid://d1yge7lhv5ql7" path="res://prefabs/monster/monster.gd" id="1_s3gyj"]
+
+[node name="EvolvingMonster" type="Node2D"]
+script = ExtResource("1_s3gyj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

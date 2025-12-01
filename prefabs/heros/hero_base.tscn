@@ -3,26 +3,24 @@
 [ext_resource type="Script" uid="uid://24xibddeafv8" path="res://prefabs/heros/hero_base.gd" id="1_lebsp"]
 
 [node name="HeroBase" type="Node2D"]
-position = Vector2(388, 265)
 script = ExtResource("1_lebsp")
-hero_name = null
-reaction_time = null
-max_health = null
-movement_speed = null
-attack_speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+scale = Vector2(0.09, 0.09)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
 
 [node name="Control" type="Control" parent="CanvasLayer"]
+z_index = 5
 layout_mode = 3
 anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 10.0
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
+z_index = 5
 layout_mode = 0
 offset_left = 164.0
 offset_top = 117.0

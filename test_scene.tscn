@@ -1,34 +1,87 @@
-[gd_scene load_steps=4 format=3 uid="uid://8lxfco6p5vpl"]
+[gd_scene load_steps=10 format=3 uid="uid://8lxfco6p5vpl"]
 
+[ext_resource type="FontFile" uid="uid://bf32d683lm2ol" path="res://font/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="1_8pr8v"]
 [ext_resource type="PackedScene" uid="uid://b7nxdmy3oajh6" path="res://prefabs/monster/monster.tscn" id="1_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://bn83i0eyy6xte" path="res://prefabs/Cards/card_container.tscn" id="2_sasra"]
+[ext_resource type="Texture2D" uid="uid://dlik1nr5sq8p8" path="res://images/backgrounds/background.png" id="4_coq8p"]
+[ext_resource type="Texture2D" uid="uid://brse0aaehlkcg" path="res://images/backgrounds/a260e26a-6e8c-40fa-b72a-12707fbcd705.png" id="6_7cbxl"]
+[ext_resource type="Texture2D" uid="uid://d2m722ffkbqdg" path="res://images/backgrounds/board2.png" id="6_8pr8v"]
+[ext_resource type="PackedScene" uid="uid://bkek0thjjo2y8" path="res://prefabs/arena/arena.tscn" id="7_buypi"]
 
 [sub_resource type="GDScript" id="GDScript_uhqqe"]
 script/source = "extends Node2D
 "
+
+[sub_resource type="PackedScene" id="PackedScene_8pr8v"]
 
 [node name="TestScene" type="Node2D"]
 script = SubResource("GDScript_uhqqe")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="InfoLabel" type="Label" parent="UI"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 320.0
-offset_bottom = 140.0
+[node name="enemyInfoLabel2" type="Label" parent="UI"]
+offset_left = 826.0
+offset_top = 31.0
+offset_right = 1129.0
+offset_bottom = 83.0
+theme_override_fonts/font = ExtResource("1_8pr8v")
+text = "Enemy left:"
+
+[node name="selfInfoLabel" type="Label" parent="UI"]
+offset_left = 48.000004
+offset_top = 93.00001
+offset_right = 255.48376
+offset_bottom = 213.0
+scale = Vector2(1.39288, 1.3134037)
+theme_override_fonts/font = ExtResource("1_8pr8v")
+text = "YOUR STATS
+Attack Power: 10
+Max Health: 100
+Speed: 2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StageLabel" type="Label" parent="UI"]
-offset_left = 20.0
-offset_top = 180.0
-offset_right = 320.0
-offset_bottom = 210.0
+offset_left = 16.0
+offset_top = 15.0
+offset_right = 316.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("1_8pr8v")
+text = "Wave:1"
+
+[node name="Arena" parent="." instance=ExtResource("7_buypi")]
+position = Vector2(574, 196)
+arena_center = Vector2(576, 196)
 
 [node name="EvolvingMonster" parent="." instance=ExtResource("1_ia1lp")]
-position = Vector2(396, 204)
+position = Vector2(576, 200)
+attack_particle_scene = SubResource("PackedScene_8pr8v")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(591, 320)
+scale = Vector2(1.4219444, 0.93493253)
+texture = ExtResource("4_coq8p")
+
+[node name="CardBoarder" type="Sprite2D" parent="."]
+z_index = -9
+position = Vector2(581, 526.5)
+scale = Vector2(0.757353, 0.46718746)
+texture = ExtResource("6_7cbxl")
+
+[node name="Board2" type="Sprite2D" parent="."]
+position = Vector2(965.6875, 65)
+scale = Vector2(0.38417158, 0.29190752)
+texture = ExtResource("6_8pr8v")
+
+[node name="Board3" type="Sprite2D" parent="."]
+position = Vector2(195, 173)
+scale = Vector2(0.37928995, 0.66184974)
+texture = ExtResource("6_8pr8v")
 
 [node name="CardContainer" parent="." instance=ExtResource("2_sasra")]
-offset_left = 152.0
-offset_top = 498.0
-offset_right = 152.0
-offset_bottom = 498.0
+offset_left = 25.0
+offset_top = 220.0
+offset_right = 25.0
+offset_bottom = 220.0
+card_size = Vector2(200, 200)

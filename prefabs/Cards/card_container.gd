@@ -1,6 +1,9 @@
+# res://prefabs/Cards/card_container.gd
 # res://prefabs/card_container.gd
 # Edit file: res://prefabs/card_container.gd
 extends Control
+
+@onready var hbox_container = $HBoxContainer
 
 @export var card_spacing: int = 20
 @export var max_cards: int = 8
@@ -10,28 +13,37 @@ extends Control
 var cards: Array = []
 var card_scene = preload("res://prefabs/Cards/draggable_card.tscn")
 
-var texture_ability_card_1 : Texture2D=load("res://images/card/Eye_beam.png")
+var texture_ability_card_Eye_beam : Texture2D=load("res://images/card/Eye_beam.png")
+var texture_ability_card_Soul_Leech : Texture2D=load("res://images/card/Soul_Leech.png")
+var texture_ability_card_Tenti_smash : Texture2D=load("res://images/card/Tenti_smash.png")
+var texture_ability_card_oozing_barrage : Texture2D=load("res://images/card/oozing_barrage.png")
+var texture_ability_card_Eld_Blast : Texture2D=load("res://images/card/Eld_Blast.png")
 
 var card_original_positions: Dictionary = {}
+
 @onready var container = $HBoxContainer
 
 func _ready():
+
 	# Ensure proper container setup
 	setup_container()
-	
+
 	# Create starting cards
 	create_starting_cards()
-	
+
 	# Add border styling via a StyleBoxFlat
 	add_theme_stylebox_override("panel", create_border_stylebox())
-	
-	# Enable drop detection so this container can accept dropped cards
+
+	# Enable drop detection so this container can accept dropped card
 	mouse_filter = Control.MOUSE_FILTER_PASS
-	
+
+
+
 	# Track original positions of cards
 	for child in container.get_children():
 		if child is Control:
 			card_original_positions[child] = child.global_position
+
 	
 func create_border_stylebox() -> StyleBoxFlat:
 	var stylebox = StyleBoxFlat.new()
@@ -70,39 +82,29 @@ func setup_container():
 
 func create_starting_cards():
 	var starting_card_data = [
-		{"text": "Attack", "texture": texture_ability_card_1 },
-		{"text": "Defend", "texture": texture_ability_card_1 },
-		{"text": "Heal", "texture": texture_ability_card_1 },
-		{"text": "Special", "texture":texture_ability_card_1 },
-		{"text": "Boost", "texture":texture_ability_card_1 }
+		{"text": "Eye_beam", "index":0,"texture": texture_ability_card_Eye_beam },
+		{"text": "Soul_Leech", "index":1,"texture": texture_ability_card_Soul_Leech },
+		{"text": "Tenti_smash", "index":2,"texture": texture_ability_card_Tenti_smash },
+		{"text": "oozing_barrage", "index":3,"texture":texture_ability_card_oozing_barrage },
+		{"text": "Eld_Blast ", "index":4,"texture":texture_ability_card_Eld_Blast }
 	]
 	
 	for i in range(min(starting_cards, starting_card_data.size())):
 		var card_data = starting_card_data[i]
-		add_card(card_data.text, card_data.texture)
+		add_card(card_data.text, card_data.index,card_data.texture)
 
-#func _can_drop_data(position, data):
-	# Accept any draggable card data
-	#return data is Dictionary and data.has("card")
-
-#func _drop_data(position, data):
-	# Card was dropped on the container - update its original position
-	#var card = null
-	#if data is Dictionary and data.has("card"):
-	#	card = data["card"]
-	#if card != null and card_original_positions.has(card):
-	#	card_original_positions[card] = card.global_position
-#/
 func get_drop_position_for_card(card):
 	# Return the stored original position for this card, or container position as fallback
 	return card_original_positions.get(card, global_position)
-func add_card(text: String, texture: Texture2D = null) -> bool:
+
+func add_card(text: String, index:int ,texture: Texture2D = null) -> bool:
 	if cards.size() >= max_cards:
 		return false
 	
 	var new_card = card_scene.instantiate()
 	new_card.card_text = text
 	new_card.card_texture = texture
+	new_card.card_pindex=index
 	# Set a fixed size for the card
 	new_card.custom_minimum_size = card_size
 	new_card.size = card_size
@@ -182,7 +184,13 @@ func update_card_indices():
 
 func get_cards() -> Array:
 	return cards.duplicate()
-
+	
+func get_card_order() -> Array:
+	var card_order: Array
+	for i in range(cards.size()):
+		card_order.insert(i,cards[i].card_pindex)
+	return card_order
+	
 func clear_cards():
 	for card in cards:
 		card.queue_free()

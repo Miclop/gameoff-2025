@@ -22,10 +22,14 @@ func _ready():
 	# Set texture if provided
 	if hero_texture:
 		sprite.texture = hero_texture
+		sprite.transform.scale=Vector2(0.09,0.09)
 	current_health = max_health
 	setup_health_bar()
 	update_display()
-
+	
+func get_hero_name():
+	return hero_name;
+	
 func setup_health_bar():
 	if health_bar:
 		# Configure the health bar
@@ -36,7 +40,7 @@ func setup_health_bar():
 		
 		# Position the health bar below the sprite
 		if sprite and sprite.texture:
-			var sprite_height = sprite.texture.get_height()
+			var sprite_height = sprite.texture.get_height()* sprite.transform.get_scale().y
 			health_bar.position.y = sprite_height + 5
 		else:
 			var sprite_height = 32
@@ -68,6 +72,8 @@ func update_display():
 			health_bar.add_theme_stylebox_override("fill", load("res://theme/yellow_fill.tres"))
 		else:
 			health_bar.add_theme_stylebox_override("fill", load("res://theme/red_fill.tres"))
+
+
 
 func die():
 	queue_free()

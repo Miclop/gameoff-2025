@@ -20,4 +20,5 @@ layout_mode = 0
 show_percentage = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.09, 0.09)
 texture = ExtResource("2_ucvuq")
