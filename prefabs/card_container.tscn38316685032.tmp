@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn83i0eyy6xte"]
+
+[ext_resource type="Script" uid="uid://fh1ttejsbcp5" path="res://prefabs/card_container.gd" id="1_sd8lp"]
+
+[node name="CardContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sd8lp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0

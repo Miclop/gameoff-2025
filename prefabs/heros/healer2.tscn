@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dds03tvj0lfif"]
+
+[ext_resource type="Script" uid="uid://dbkgpkyvmbot1" path="res://prefabs/heros/healer2.gd" id="1_t12o5"]
+[ext_resource type="Texture2D" uid="uid://cq0nm8s6yhbqf" path="res://images/heros/meele1.png" id="2_2y3xx"]
+
+[node name="Healer2" type="Node2D"]
+script = ExtResource("1_t12o5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.0
+offset_bottom = 10.0
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 0
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2y3xx")

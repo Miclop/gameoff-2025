@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dku2ck7vkatfy"]
+
+[ext_resource type="Script" uid="uid://cubf6spu2mh56" path="res://prefabs/heros/ranged2.gd" id="1_g3hsh"]
+[ext_resource type="Texture2D" uid="uid://bpegn6nhm2rp6" path="res://images/heros/ranged2.png" id="2_v7ldb"]
+
+[node name="Ranged2" type="Node2D"]
+script = ExtResource("1_g3hsh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.0
+offset_bottom = 10.0
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 0
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v7ldb")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dew3ihy8uib1b"]
+
+[ext_resource type="Script" uid="uid://tnif488gvn3k" path="res://prefabs/draggable_card.gd" id="1_r8bnh"]
+[ext_resource type="Texture2D" uid="uid://5i1av0p2vjou" path="res://images/ability card/Eyebeam card.png" id="2_pcvsd"]
+
+[node name="DraggableCard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r8bnh")
+card_texture = ExtResource("2_pcvsd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_pcvsd")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 126.0
+offset_right = 12.0
+offset_bottom = 149.0

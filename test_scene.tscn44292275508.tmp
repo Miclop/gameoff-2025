@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://8lxfco6p5vpl"]
+
+[ext_resource type="PackedScene" uid="uid://b7nxdmy3oajh6" path="res://prefabs/monster/monster.tscn" id="1_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://bn83i0eyy6xte" path="res://prefabs/Cards/card_container.tscn" id="2_sasra"]
+
+[sub_resource type="GDScript" id="GDScript_uhqqe"]
+script/source = "extends Node2D
+
+@onready var monster: EvolvingMonster = $EvolvingMonster
+@onready var info_label: Label = $UI/InfoLabel
+@onready var stage_label: Label = $UI/StageLabel
+
+
+func _process(delta):
+	update_display()
+	
+func update_display():
+	var stats = monster.get_stats()
+	
+	stage_label.text = \"Stage: %s (%s)\" % [stats.stage, monster.get_stage_name()]
+	
+	info_label.text = \"\"\"
+	Health: %.1f
+	Attack: %.1f
+	Speed: %.1f
+	Next Evolution In: %.1fs
+	\"\"\" % [stats.health, stats.attack, stats.speed, stats.time_until_next_evolution]
+"
+
+[node name="TestScene" type="Node2D"]
+script = SubResource("GDScript_uhqqe")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InfoLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 140.0
+
+[node name="StageLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 180.0
+offset_right = 320.0
+offset_bottom = 210.0
+
+[node name="EvolvingMonster" parent="." instance=ExtResource("1_ia1lp")]
+position = Vector2(396, 204)
+
+[node name="CardContainer" parent="." instance=ExtResource("2_sasra")]
+offset_left = 152.0
+offset_top = 498.0
+offset_right = 152.0
+offset_bottom = 498.0

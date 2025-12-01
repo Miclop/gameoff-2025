@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dew3ihy8uib1b"]
+
+[ext_resource type="Script" uid="uid://tnif488gvn3k" path="res://prefabs/Cards/draggable_card.gd" id="1_r8bnh"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r8bnh"]
+load_path = "res://.godot/imported/Eyebeam_card.png-df7c063a143af764456e5b2c9c731a22.ctex"
+
+[node name="DraggableCard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r8bnh")
+card_texture = SubResource("CompressedTexture2D_r8bnh")
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+layout_mode = 0
+offset_top = 220.0
+offset_right = 28.0
+offset_bottom = 243.0
+text = "123"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+scale = Vector2(0.22, 0.22)
